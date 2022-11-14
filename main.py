@@ -4,4 +4,11 @@ import sklearn
 import numpy as np
 
 df = pd.read_csv("./Datasets/GDP (current US$).xls - Data (1).csv")
-print(df["World Development Indicators"])
+df = df.drop([0, 1])
+print(df)
+
+
+
+
+#df = df.loc[3:, :].reset
+#print(df)
