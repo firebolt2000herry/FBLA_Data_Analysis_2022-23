@@ -40,7 +40,7 @@ for filename, l in files2.items():
     df = df.fillna(0)
     df = df[df['Country Name'].isin(l)]
     df = df.reset_index(drop=True)
-    for year in range(2010, 202):
+    for year in range(2010, 2020):
         df[str(year)] = df[str(year)].astype('int64') 
     print(filename)
     print(df)
