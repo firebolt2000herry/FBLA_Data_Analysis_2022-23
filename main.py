@@ -1,9 +1,9 @@
 import pandas as pd
 import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
+from sklearn import linear_model
+from sklearn.model_selection import train_test_split
 
-%matplotlib inline
 countries = ['Canada', 'China', 'France', 'United States']
 special_filename = 'Human Capital Index (HCI) (scale 0-1)'
 files = [
@@ -22,6 +22,8 @@ files = [
 ]
 dfs = []
 
+# reg = linear_model.LinearRegression()
+
 for filename in files:
     df = pd.read_csv(f'Datasets/{filename}.xls - Data.csv', skiprows=3).fillna(0)
     df = df[df['Country Name'].isin(countries)]
@@ -29,8 +31,28 @@ for filename in files:
     year_range = [2010, 2020] if filename == special_filename else [1960, 2021]
     for year in range(year_range[0], year_range[1]+1):
         df[str(year)] = df[str(year)].astype('int64') 
+    
+    
     print(f'{filename}\n{df}\n')
     dfs.append([filename, df])
+    
+    # # reg.fit(df[['2001', '2002', '2003', '2004']], 'Country Name')
+    # # x = 'Country Name'
+    # # y = '2001'
 
-# print(dfs)
-q
+    # # x_train, x_test, y_train, y_test = train_test_split(x, y, test_size= 0.30)
+    # # reg.fit(x_train, y_train)
+
+    # # y_pred = reg.predict(x_test)
+    # # print(y_pred)
+    
+    
+    # y = ['2001', '2002', '2003', '2004', '2005']
+    # x = ['Country Name']
+
+    # for xe, ye in zip(x, y):
+    #     plt.scatter([xe] * len(ye), ye)
+
+    df.plot(kind='scatter', x='Country Name', y='2000')
+    plt.show()
+    
